@@ -1,2 +1,0 @@
-# ProgettinoSER -> istruzioni d'uso
-
