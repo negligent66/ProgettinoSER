@@ -17,7 +17,7 @@ public class LettoreCSV {
     
 
     public void letturaFile(){
-        try (BufferedReader br = new BufferedReader(new FileReader("Mappa-delle-antenne-in-Italia.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\yi.chen\\Desktop\\ProgettinoSER\\Progettino\\Server\\Mappa-delle-antenne-in-Italia.csv"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(";");
@@ -35,6 +35,7 @@ public class LettoreCSV {
             }
         }catch(IOException e){
             System.out.println("file probabilmente non presente");
+            e.printStackTrace();
         }
     }
 

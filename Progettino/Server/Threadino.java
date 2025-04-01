@@ -1,59 +1,97 @@
 package Progettino.Server;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+
+import java.io.*;
 import java.net.Socket;
+import java.util.List;
+
 
 public class Threadino implements Runnable {
     private BufferedReader in = null;
     private PrintWriter out = null;
     private Socket clientSocket = null;
+    private LettoreCSV lettoreCSV;
 
-    public Threadino(Socket clientSocket) {
+
+    public Threadino(Socket clientSocket, LettoreCSV lettoreCSV) {
         this.clientSocket = clientSocket;
+        this.lettoreCSV = lettoreCSV;
     }
+
 
     public void run() {
         try {
-            // bloccante finchè non avviene una connessione
-
             System.out.println("Connection accepted: " + clientSocket);
-            // creazione stream di input da clientSocket
-            InputStreamReader isr = new InputStreamReader(clientSocket.getInputStream());
-            in = new BufferedReader(isr);
-            // creazione stream di output su clientSocket
-            OutputStreamWriter osw = new OutputStreamWriter(clientSocket.getOutputStream());
-            BufferedWriter bw = new BufferedWriter(osw);
-            out = new PrintWriter(bw, true);
-            // ciclo di ricezione dal client e invio di risposta
-            out.print("Inserisci il tuo nome (END to close connection): ");
-            out.flush();
+            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream())), true);
+
+
+            out.println("Digita una parola chiave seguita dal valore da cercare (END per uscire). Esempio: comune Roma");
+
             while (true) {
-                char h;
-                int somma = 0;
                 String str = in.readLine();
-                for(int i = 0; i < str.length(); i++){
-                    h = str.charAt(i);
-                    somma += h;
+                if (str == null || str.equalsIgnoreCase("END")) break;
+
+                String[] parts = str.split(" ", 2);
+                if (parts.length < 2) {
+                    out.println("Formato non valido. Usa 'parolaChiave valore'.");
+                    continue;
                 }
-                if (str.equals("END"))
-                    break;
-                System.out.println("Echoing: " + str.toUpperCase());
-                out.println("somma dei valori ASCII delle lettere del tuo nome: " + somma);
+
+                String keyword = parts[0].toLowerCase();
+                String value = parts[1];
+                List<Datini> results = null;
+
+
+                switch (keyword) {
+                    case "comune":
+                        results = lettoreCSV.ricercaComuni(value);
+                        break;
+                    case "provincia":
+                        results = lettoreCSV.ricercaProvincia(value);
+                        break;
+                    case "regione":
+                        results = lettoreCSV.ricercaRegione(value);
+                        break;
+                    case "nome":
+                        results = lettoreCSV.ricercaNome(value);
+                        break;
+                    case "anno":
+                        results = lettoreCSV.ricercaAnno(value);
+                        break;
+                    case "identificatore":
+                        results = lettoreCSV.ricercaIdentificatore(value);
+                        break;
+                    case "longitudine":
+                        results = lettoreCSV.ricercaLongitudine(value);
+                        break;
+                    case "latitudine":
+                        results = lettoreCSV.ricercaLatitudine(value);
+                        break;
+                    default:
+                        out.println("Chiave non riconosciuta. Prova con: comune, provincia, regione, nome, anno, identificatore, longitudine, latitudine.");
+                        continue;
+                }
+
+                if (results != null && !results.isEmpty()) {
+                    int i = 1;
+                    for (Datini dati : results) {
+                        out.println(i + ") " + dati.getComune() + ", " + dati.getProvincia() + ", " + dati.getRegione() + ", " + dati.getNome());
+                        i++;
+                    }
+                } else {
+                    out.println("Nessun risultato trovato.");
+                }
             }
-            // chiusura di stream e socket
-            System.out.println("EchoServer: closing...");
+
             out.close();
             in.close();
             clientSocket.close();
+            System.out.println("Connessione chiusa.");
         } catch (IOException e) {
-            System.err.println("Accept failed");
-            System.exit(1);
+            System.err.println("Errore nella connessione: " + e.getMessage());
         }
-
     }
+
+
 }
