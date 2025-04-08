@@ -10,6 +10,7 @@ import java.util.List;
 
 public class LettoreCSV {
     List<Datini> records = new ArrayList<>();
+    private final String VUOTO = "////";
 
     public LettoreCSV(){
         letturaFile();
@@ -17,20 +18,56 @@ public class LettoreCSV {
     
 
     public void letturaFile(){
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\yi.chen\\Desktop\\ProgettinoSER\\Progettino\\Server\\Mappa-delle-antenne-in-Italia.csv"))) {
-            String line;
+        try (BufferedReader br = new BufferedReader(new FileReader("Server\\Mappa-delle-antenne-in-Italia.csv"))) {
+            String line = br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(";");
                 Datini dati = new Datini();
-                dati.setComune(values[0]);
-                dati.setProvincia(values[1]);
-                dati.setRegione(values[2]);
-                dati.setNome(values[3]);
-                dati.setAnno(values[4]);
-                dati.setDataOra(values[5]);
-                dati.setIdentificatore(values[6]);
-                dati.setLongitudine(values[7]);
-                dati.setLatitudine(values[8]);
+                if (values[0] == null || values[0].isEmpty()){
+                    dati.setComune(VUOTO);
+                }else {
+                    dati.setComune(values[0]);
+                }
+                if (values[1] == null || values[1].isEmpty()){
+                    dati.setProvincia(VUOTO);
+                }else {
+                    dati.setProvincia(values[1]);
+                }
+                if (values[2] == null || values[2].isEmpty()){
+                    dati.setRegione(VUOTO);
+                }else {
+                    dati.setRegione(values[2]);
+                }
+                if (values[3] == null || values[3].isEmpty()){
+                    dati.setNome(VUOTO);
+                }else {
+                    dati.setNome(values[3]);
+                }
+                if (values[4] == null || values[4].isEmpty()){
+                    dati.setAnno(VUOTO);
+                }else{
+                    dati.setAnno(values[4]);
+                }
+                if (values[5] == null || values[5].isEmpty()){
+                    dati.setDataOra(VUOTO);
+                }else{
+                    dati.setDataOra(values[5]);
+                }
+                if (values[6] == null || values[6].isEmpty()){
+                    dati.setIdentificatore(VUOTO);
+                }else{
+                    dati.setIdentificatore(values[6]);
+                }
+                if (values[7] == null || values[7].isEmpty()){
+                    dati.setLongitudine(VUOTO);
+                }else {
+                    dati.setLongitudine(values[7]);
+                }
+                if (values[8] == null || values[8].isEmpty()){
+                    dati.setLatitudine(VUOTO);
+                }else {
+                    dati.setLatitudine(values[8]);
+                }
                 records.add(dati);
             }
         }catch(IOException e){

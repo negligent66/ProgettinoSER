@@ -1,6 +1,5 @@
 package Progettino.Server;
 
-
 import java.io.*;
 import java.net.Socket;
 import java.util.List;
@@ -17,8 +16,6 @@ public class Threadino implements Runnable {
         this.clientSocket = clientSocket;
         this.lettoreCSV = lettoreCSV;
     }
-
-
     public void run() {
         try {
             System.out.println("Connection accepted: " + clientSocket);
@@ -26,24 +23,62 @@ public class Threadino implements Runnable {
             out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream())), true);
 
 
-            out.println("Digita una parola chiave seguita dal valore da cercare (END per uscire). Esempio: comune Roma");
+            out.println("Digita una parola chiave seguita dal valore da cercare (END per uscire e help per vedere quali comandi puoi usare)");
 
             while (true) {
                 String str = in.readLine();
                 if (str == null || str.equalsIgnoreCase("END")) break;
 
                 String[] parts = str.split(" ", 2);
-                if (parts.length < 2) {
-                    out.println("Formato non valido. Usa 'parolaChiave valore'.");
+                if (parts[0].equals("help")){
+                    out.println("Chiavi che puoi usare: " +
+                            "\n\rget_row -> restituisce una riga del file" +
+                            "\n\rget_all -> restituisce tutto il file" +
+                            "\n\rcomune -> restituisce le righe con lo stesso comune" +
+                            "\n\rprovincia -> restituisce le righe con la stessa provincia" +
+                            "\n\rregione -> restituisce le righe con la stessa regione" +
+                            "\n\rnome -> restituisce le righe con lo stesso nome" +
+                            "\n\ranno -> restituisce le righe con lo stesso anno" +
+                            "\n\ridentificatore -> restituisce le righe con lo stesso id" +
+                            "\n\rlongitudine -> restituisce le righe con la stessa longitudine" +
+                            "\n\rlatitudine -> restituisce le righe con la stessa latitudine");
                     continue;
                 }
 
                 String keyword = parts[0].toLowerCase();
-                String value = parts[1];
+                String value = "";
+                if (parts.length > 1) {
+                    value = parts[1];
+                }
                 List<Datini> results = null;
 
 
                 switch (keyword) {
+                    case "get_all":
+                        results = lettoreCSV.getRecords();
+                        int i = 1;
+                        for (Datini dati:results){
+                            out.println(i + ") " + dati.getComune() + ", " + dati.getProvincia()
+                                    + ", " + dati.getRegione() + ", " + dati.getNome()
+                                    + ", " + dati.getAnno() + ", " + dati.getDataOra()
+                                    + ", " + dati.getIdentificatore()+ ", " + dati.getLongitudine()
+                                    + ", " + dati.getLatitudine() + "\r");
+                            i++;
+                        }
+                        continue;
+                    case "get_row":
+                        try {
+                            int riga = Integer.parseInt(value);
+                            Datini dati = lettoreCSV.getRecords().get(riga);
+                            out.println(riga + ") " + dati.getComune() + ", " + dati.getProvincia()
+                                    + ", " + dati.getRegione() + ", " + dati.getNome()
+                                    + ", " + dati.getAnno() + ", " + dati.getDataOra()
+                                    + ", " + dati.getIdentificatore()+ ", " + dati.getLongitudine()
+                                    + ", " + dati.getLatitudine());
+                        } catch (NumberFormatException e) {
+                            throw new RuntimeException(e);
+                        }
+                        continue;
                     case "comune":
                         results = lettoreCSV.ricercaComuni(value);
                         break;
@@ -76,7 +111,11 @@ public class Threadino implements Runnable {
                 if (results != null && !results.isEmpty()) {
                     int i = 1;
                     for (Datini dati : results) {
-                        out.println(i + ") " + dati.getComune() + ", " + dati.getProvincia() + ", " + dati.getRegione() + ", " + dati.getNome());
+                        out.println(i + ") " + dati.getComune() + ", " + dati.getProvincia()
+                                + ", " + dati.getRegione() + ", " + dati.getNome()
+                                + ", " + dati.getAnno() + ", " + dati.getDataOra()
+                                + ", " + dati.getIdentificatore()+ ", " + dati.getLongitudine()
+                                + ", " + dati.getLatitudine() + "\r");
                         i++;
                     }
                 } else {
