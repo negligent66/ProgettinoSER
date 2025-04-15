@@ -4,81 +4,88 @@ import java.io.*;
 import java.net.Socket;
 import java.util.List;
 
-
 public class Threadino implements Runnable {
     private BufferedReader in = null;
     private PrintWriter out = null;
     private Socket clientSocket = null;
     private LettoreCSV lettoreCSV;
 
-
     public Threadino(Socket clientSocket, LettoreCSV lettoreCSV) {
         this.clientSocket = clientSocket;
         this.lettoreCSV = lettoreCSV;
     }
+
     public void run() {
         try {
             System.out.println("Connection accepted: " + clientSocket);
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream())), true);
 
-
-            out.println("Digita una parola chiave seguita dal valore da cercare (END per uscire e help per vedere quali comandi puoi usare)");
+            out.println("Scrivi il comando nel seguente modo (keyWord valore) (END per uscire e help per vedere quali comandi puoi usare):");
+            out.println("END_OF_MESSAGE"); // primo messaggio
 
             while (true) {
                 String str = in.readLine();
                 if (str == null || str.equalsIgnoreCase("END")) break;
 
                 String[] parts = str.split(" ", 2);
-                if (parts[0].equals("help")){
+                System.out.println(str);
+
+                if (str.equals("help")) {
                     out.println("Chiavi che puoi usare: " +
-                            "\n\rget_row -> restituisce una riga del file" +
-                            "\n\rget_all -> restituisce tutto il file" +
-                            "\n\rcomune -> restituisce le righe con lo stesso comune" +
-                            "\n\rprovincia -> restituisce le righe con la stessa provincia" +
-                            "\n\rregione -> restituisce le righe con la stessa regione" +
-                            "\n\rnome -> restituisce le righe con lo stesso nome" +
-                            "\n\ranno -> restituisce le righe con lo stesso anno" +
-                            "\n\ridentificatore -> restituisce le righe con lo stesso id" +
-                            "\n\rlongitudine -> restituisce le righe con la stessa longitudine" +
-                            "\n\rlatitudine -> restituisce le righe con la stessa latitudine");
+                            "\nget_row -> restituisce una riga del file" +
+                            "\nget_all -> restituisce tutto il file (non ha bisogno di un valore dopo la parola chiave)" +
+                            "\ncomune -> restituisce le righe con lo stesso comune" +
+                            "\nprovincia -> restituisce le righe con la stessa provincia" +
+                            "\nregione -> restituisce le righe con la stessa regione" +
+                            "\nnome -> restituisce le righe con lo stesso nome" +
+                            "\nanno -> restituisce le righe con lo stesso anno" +
+                            "\nidentificatore -> restituisce le righe con lo stesso id" +
+                            "\nlongitudine -> restituisce le righe con la stessa longitudine" +
+                            "\nlatitudine -> restituisce le righe con la stessa latitudine");
+                    out.println("END_OF_MESSAGE");
                     continue;
                 }
 
                 String keyword = parts[0].toLowerCase();
-                String value = "";
-                if (parts.length > 1) {
-                    value = parts[1];
-                }
+                String value = (parts.length > 1) ? parts[1] : "";
                 List<Datini> results = null;
-
 
                 switch (keyword) {
                     case "get_all":
                         results = lettoreCSV.getRecords();
                         int i = 1;
-                        for (Datini dati:results){
-                            out.println(i + ") " + dati.getComune() + ", " + dati.getProvincia()
+                        for (Datini dati : results) {
+                            out.println(i++ + ") " + dati.getComune() + ", " + dati.getProvincia()
                                     + ", " + dati.getRegione() + ", " + dati.getNome()
                                     + ", " + dati.getAnno() + ", " + dati.getDataOra()
-                                    + ", " + dati.getIdentificatore()+ ", " + dati.getLongitudine()
-                                    + ", " + dati.getLatitudine() + "\r");
-                            i++;
+                                    + ", " + dati.getIdentificatore() + ", " + dati.getLongitudine()
+                                    + ", " + dati.getLatitudine());
                         }
+                        out.println("END_OF_MESSAGE");
                         continue;
+
                     case "get_row":
                         try {
                             int riga = Integer.parseInt(value);
+                            if (riga < 1 || riga >= lettoreCSV.getRecords().size()) {
+                                out.println("Riga non valida. Inserisci un numero tra 1 e " + (lettoreCSV.getRecords().size() - 1));
+                                out.println("END_OF_MESSAGE");
+                                continue;
+                            }
                             Datini dati = lettoreCSV.getRecords().get(riga);
                             out.println(riga + ") " + dati.getComune() + ", " + dati.getProvincia()
                                     + ", " + dati.getRegione() + ", " + dati.getNome()
                                     + ", " + dati.getAnno() + ", " + dati.getDataOra()
-                                    + ", " + dati.getIdentificatore()+ ", " + dati.getLongitudine()
+                                    + ", " + dati.getIdentificatore() + ", " + dati.getLongitudine()
                                     + ", " + dati.getLatitudine());
+                            out.println("END_OF_MESSAGE");
                         } catch (NumberFormatException e) {
-                            throw new RuntimeException(e);
+                            out.println("Valore non valido, inserisci un numero.");
+                            out.println("END_OF_MESSAGE");
                         }
                         continue;
+
                     case "comune":
                         results = lettoreCSV.ricercaComuni(value);
                         break;
@@ -105,22 +112,23 @@ public class Threadino implements Runnable {
                         break;
                     default:
                         out.println("Chiave non riconosciuta. Prova con: comune, provincia, regione, nome, anno, identificatore, longitudine, latitudine.");
+                        out.println("END_OF_MESSAGE");
                         continue;
                 }
 
                 if (results != null && !results.isEmpty()) {
-                    int i = 1;
+                    int j = 1;
                     for (Datini dati : results) {
-                        out.println(i + ") " + dati.getComune() + ", " + dati.getProvincia()
+                        out.println(j++ + ") " + dati.getComune() + ", " + dati.getProvincia()
                                 + ", " + dati.getRegione() + ", " + dati.getNome()
                                 + ", " + dati.getAnno() + ", " + dati.getDataOra()
-                                + ", " + dati.getIdentificatore()+ ", " + dati.getLongitudine()
-                                + ", " + dati.getLatitudine() + "\r");
-                        i++;
+                                + ", " + dati.getIdentificatore() + ", " + dati.getLongitudine()
+                                + ", " + dati.getLatitudine());
                     }
                 } else {
                     out.println("Nessun risultato trovato.");
                 }
+                out.println("END_OF_MESSAGE");
             }
 
             out.close();
@@ -131,6 +139,4 @@ public class Threadino implements Runnable {
             System.err.println("Errore nella connessione: " + e.getMessage());
         }
     }
-
-
 }
