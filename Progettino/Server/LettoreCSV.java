@@ -3,10 +3,7 @@ package Progettino.Server;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class LettoreCSV {
     List<Datini> records = new ArrayList<>();
@@ -18,7 +15,7 @@ public class LettoreCSV {
     
 
     public void letturaFile(){
-        try (BufferedReader br = new BufferedReader(new FileReader("Server\\Mappa-delle-antenne-in-Italia.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\cheni\\Desktop\\programmi\\ProgettinoSER\\Progettino\\Server\\Mappa-delle-antenne-in-Italia.csv"))) {
             String line = br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(";");
@@ -75,7 +72,41 @@ public class LettoreCSV {
             e.printStackTrace();
         }
     }
-
+    public List<Datini> ordinaPerCampo(String campo) {
+        List<Datini> sortedList = new ArrayList<>(records);
+        switch (campo.toLowerCase()) {
+            case "comune":
+                sortedList.sort(Comparator.comparing(Datini::getComune));
+                break;
+            case "provincia":
+                sortedList.sort(Comparator.comparing(Datini::getProvincia));
+                break;
+            case "regione":
+                sortedList.sort(Comparator.comparing(Datini::getRegione));
+                break;
+            case "nome":
+                sortedList.sort(Comparator.comparing(Datini::getNome));
+                break;
+            case "anno":
+                sortedList.sort(Comparator.comparing(Datini::getAnno));
+                break;
+            case "dataora":
+                sortedList.sort(Comparator.comparing(Datini::getDataOra));
+                break;
+            case "identificatore":
+                sortedList.sort(Comparator.comparing(Datini::getIdentificatore));
+                break;
+            case "longitudine":
+                sortedList.sort(Comparator.comparing(Datini::getLongitudine));
+                break;
+            case "latitudine":
+                sortedList.sort(Comparator.comparing(Datini::getLatitudine));
+                break;
+            default:
+                throw new IllegalArgumentException("Campo non valido per l'ordinamento.");
+        }
+        return sortedList;
+    }
 
     public List<Datini> getRecords() {
         return records;

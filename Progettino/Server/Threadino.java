@@ -85,7 +85,80 @@ public class Threadino implements Runnable {
                             out.println("END_OF_MESSAGE");
                         }
                         continue;
-
+                    case "sort_by":
+                        try {
+                            results = lettoreCSV.ordinaPerCampo(value);
+                            int p = 1;
+                            switch (value.toLowerCase()) {
+                                case "comune":
+                                    for (Datini dati : results) {
+                                        out.println(p++ + ") " + dati.getComune() + ", " + dati.getProvincia() + ", " + dati.getRegione() + ", " +
+                                                dati.getNome() + ", " + dati.getAnno() + ", " + dati.getDataOra() + ", " +
+                                                dati.getIdentificatore() + ", " + dati.getLongitudine() + ", " + dati.getLatitudine());
+                                    }
+                                    break;
+                                case "provincia":
+                                    for (Datini dati : results) {
+                                        out.println(p++ + ") " + dati.getProvincia() + ", " + dati.getComune() + ", " + dati.getRegione() + ", " +
+                                                dati.getNome() + ", " + dati.getAnno() + ", " + dati.getDataOra() + ", " +
+                                                dati.getIdentificatore() + ", " + dati.getLongitudine() + ", " + dati.getLatitudine());
+                                    }
+                                    break;
+                                case "regione":
+                                    for (Datini dati : results) {
+                                        out.println(p++ + ") " + dati.getRegione() + ", " + dati.getComune() + ", " + dati.getProvincia() + ", " +
+                                                dati.getNome() + ", " + dati.getAnno() + ", " + dati.getDataOra() + ", " +
+                                                dati.getIdentificatore() + ", " + dati.getLongitudine() + ", " + dati.getLatitudine());
+                                    }
+                                    break;
+                                case "nome":
+                                    for (Datini dati : results) {
+                                        out.println(p++ + ") " + dati.getNome() + ", " + dati.getComune() + ", " + dati.getProvincia() + ", " +
+                                                dati.getRegione() + ", " + dati.getAnno() + ", " + dati.getDataOra() + ", " +
+                                                dati.getIdentificatore() + ", " + dati.getLongitudine() + ", " + dati.getLatitudine());
+                                    }
+                                    break;
+                                case "anno":
+                                    for (Datini dati : results) {
+                                        out.println(p++ + ") " + dati.getAnno() + ", " + dati.getComune() + ", " + dati.getProvincia() + ", " +
+                                                dati.getRegione() + ", " + dati.getNome() + ", " + dati.getDataOra() + ", " +
+                                                dati.getIdentificatore() + ", " + dati.getLongitudine() + ", " + dati.getLatitudine());
+                                    }
+                                    break;
+                                case "dataora":
+                                    for (Datini dati : results) {
+                                        out.println(p++ + ") " + dati.getDataOra() + ", " + dati.getComune() + ", " + dati.getProvincia() + ", " +
+                                                dati.getRegione() + ", " + dati.getNome() + ", " + dati.getAnno() + ", " +
+                                                dati.getIdentificatore() + ", " + dati.getLongitudine() + ", " + dati.getLatitudine());
+                                    }
+                                    break;
+                                case "identificatore":
+                                    for (Datini dati : results) {
+                                        out.println(p++ + ") " + dati.getIdentificatore() + ", " + dati.getComune() + ", " + dati.getProvincia() + ", " +
+                                                dati.getRegione() + ", " + dati.getNome() + ", " + dati.getAnno() + ", " +
+                                                dati.getDataOra() + ", " + dati.getLongitudine() + ", " + dati.getLatitudine());
+                                    }
+                                    break;
+                                case "longitudine":
+                                    for (Datini dati : results) {
+                                        out.println(p++ + ") " + dati.getLongitudine() + ", " + dati.getComune() + ", " + dati.getProvincia() + ", " +
+                                                dati.getRegione() + ", " + dati.getNome() + ", " + dati.getAnno() + ", " +
+                                                dati.getDataOra() + ", " + dati.getIdentificatore() + ", " + dati.getLatitudine());
+                                    }
+                                    break;
+                                case "latitudine":
+                                    for (Datini dati : results) {
+                                        out.println(p++ + ") " + dati.getLatitudine() + ", " + dati.getComune() + ", " + dati.getProvincia() + ", " +
+                                                dati.getRegione() + ", " + dati.getNome() + ", " + dati.getAnno() + ", " +
+                                                dati.getDataOra() + ", " + dati.getIdentificatore() + ", " + dati.getLongitudine());
+                                    }
+                                    break;
+                            }
+                        } catch (IllegalArgumentException e) {
+                            out.println("Errore: " + e.getMessage());
+                        }
+                        out.println("END_OF_MESSAGE");
+                        break;
                     case "comune":
                         results = lettoreCSV.ricercaComuni(value);
                         break;
