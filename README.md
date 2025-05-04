@@ -18,16 +18,16 @@ completato il passaggio generale si può continuare seguendo le istruzioni su co
 4- ci sarà prima di tutto il bisogno di inserire l'indirizzo IP e la porta al quale ci si deve connettere, se si lasciano i 2 campi vuoti essa metterà di default 127.0.0.1:1050  
 5- dopodichè l'utente potra utilizzare il programma inserendo i comandi presenti in questa lista:  
 **get_all** — restituisce tutte le righe del file  
-**get_row <numero>** — restituisce la riga specificata  
-**comune <nome>** — filtra per comune  
-**provincia <nome>** — filtra per provincia  
-**regione <nome>** — filtra per regione  
-**nome <nome>** — filtra per nome antenna  
-**anno <anno>** — filtra per anno  
-**identificatore <id>** — filtra per identificatore  
-**longitudine <valore>** — filtra per longitudine  
-**latitudine <valore>** — filtra per latitudine  
-**sort_by <campo>** — ordina per il campo scelto  
+**get_row `<numero>`** — restituisce la riga specificata  
+**comune `<nome>`** — filtra per comune  
+**provincia `<nome>`** — filtra per provincia  
+**regione `<nome>`** — filtra per regione  
+**nome `<nome>`** — filtra per nome antenna  
+**anno `<anno>`** — filtra per anno  
+**identificatore `<id>`** — filtra per identificatore  
+**longitudine `<valore>`** — filtra per longitudine  
+**latitudine `<valore>`** — filtra per latitudine  
+**sort_by `<campo>`** — ordina per il campo scelto  
 **help** — mostra l’elenco dei comandi  
 **END** — termina la connessione  
 
