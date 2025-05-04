@@ -168,7 +168,7 @@ public class ClientinoGUI extends JFrame {
             valoreBox.setEnabled(true);
             Set<String> valori = valoriPerCampo.getOrDefault(comando, new HashSet<>());
             List<String> listaOrdinata = new ArrayList<>(valori);
-            Collections.sort(listaOrdinata, String.CASE_INSENSITIVE_ORDER);
+            listaOrdinata.sort(String.CASE_INSENSITIVE_ORDER);
             for (String valore : listaOrdinata) {
                 valoreBox.addItem(valore);
             }
