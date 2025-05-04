@@ -4,7 +4,7 @@ L'utilizzo di questo programma cambia da in base a quale client si desidera util
 
 ## ISTRUZIONI GENERALI
 
-1- scaricare la repository con il comando "git clone <URL_repo>" sul terminale
+1- scaricare la repository con il comando "git clone <URL_repo>" sul terminale  
 2- aprire il progetto con un compilatore
 3- aprire il file del server seguendo il percorso: ProgettinoSER/Progettino/Server/Serverino.java
 4- cliccare sul run del compilatore per avviare il server
