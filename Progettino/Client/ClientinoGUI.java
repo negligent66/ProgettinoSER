@@ -151,10 +151,7 @@ public class ClientinoGUI extends JFrame {
         valoreCampo.setVisible(false);
 
         if (comando.equals("get_all") || comando.equals("sort_by")) {
-            valoreBox.setEnabled(true);
-            List<String> chiavi = List.of("comune", "provincia", "regione", "nome", "anno",
-                    "identificatore", "longitudine", "latitudine");
-            for (String chiave : chiavi) valoreBox.addItem(chiave);
+            valoreBox.setEnabled(false);
         } else if (comando.equals("get_row")) {
             valoreBox.setVisible(false);
             valoreCampo.setVisible(true);
