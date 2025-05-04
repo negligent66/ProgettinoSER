@@ -13,10 +13,10 @@ L'utilizzo di questo programma cambia da in base a quale client si desidera util
 
 completato il passaggio generale si può continuare seguendo le istruzioni su come usere il client simil terminale:  
 1- aprire il file del del client seguendo il percorso: ProgettinoSER/Progettino/Client/Clientino.java  
-2- clicacre sul run del compilatore per avviare il client **(N.B. il server deve essere avviato!!)**  
+2- cliccare sul run del compilatore per avviare il client **(N.B. il server deve essere avviato!!)**  
 3- l'utente dovrà scrivete i comandi da inviare al server sulla console del compilatore  
-4- ci sarà prima di tutto il bisogno di inserire l'indirizzo IP e la porta al quale ci si deve connettere, se si lascia vuoto essa metterà di default 127.0.0.1:1050  
-4- questi sono i comandi disponibili all'utente:  
+4- ci sarà prima di tutto il bisogno di inserire l'indirizzo IP e la porta al quale ci si deve connettere, se si lasciano i 2 campi vuoti essa metterà di default 127.0.0.1:1050  
+5- dopodichè l'utente potra utilizzare il programma inserendo i comandi presenti in questa lista:  
 **get_all** — restituisce tutte le righe del file  
 **get_row <numero>** — restituisce la riga specificata  
 **comune <nome>** — filtra per comune  
@@ -34,4 +34,9 @@ completato il passaggio generale si può continuare seguendo le istruzioni su co
 ## CLIENT GUI (GRAPHICAL USER INTERFACE)
 
 completato il passaggio generale si può continuare seguendo le istruzioni su come usere il client GUI:  
-1-  
+1- aprire il file del del client seguendo il percorso: ProgettinoSER/Progettino/Client/ClientinoGUI.java  
+2- cliccare sul run del compilatore per avviare il client **(N.B. il server deve essere avviato!!)**  
+3- sia aprirà una finestra con una serie di bottoni iniziali  
+4- prima del bottone **CONNETTI** ci sono 2 caselle di testo, il primo per l'IP e il secondo per la porta, di default sono impostati a 127.0.0.1 e 1050  
+5- il bottone **DISCONNETTI** è l'equivalente dell'END che si inserisce su terminale, essa termina la connessione
+6- 
