@@ -2,7 +2,7 @@
 
 L'utilizzo di questo programma cambia da in base a quale client si desidera utilizzare, quindi seguite le istruzioni del client del quale siete interessati a utilizzare.
 
-## ISTRUZIONI GENERALI
+## ISTRUZIONI GENERALI (necessario per l'utilizzo di entrambi i client)
 
 1- scaricare la repository con il comando "git clone <URL_repo>" sul terminale  
 2- aprire il progetto con un compilatore  
