@@ -22,7 +22,7 @@ public class ClientinoGUI extends JFrame {
 
     public ClientinoGUI() {
         setTitle("Client Antenne GUI");
-        setSize(1000, 700);
+        setSize(900, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
