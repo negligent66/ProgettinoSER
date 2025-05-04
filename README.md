@@ -39,4 +39,6 @@ completato il passaggio generale si può continuare seguendo le istruzioni su co
 3- sia aprirà una finestra con una serie di bottoni iniziali  
 4- prima del bottone **CONNETTI** ci sono 2 caselle di testo, il primo per l'IP e il secondo per la porta, di default sono impostati a 127.0.0.1 e 1050  
 5- il bottone **DISCONNETTI** è l'equivalente dell'END che si inserisce su terminale, essa termina la connessione
-6- 
+6- accanto alla scritta **COMANDO** vi è una finestra che al clicco si aprirà nei comandi disponibili all'utente  
+7- quando un comando viene scelto, nella finestra di **VALORE** appariranno il valore che si può aggiungere al comande, tali valori sono in ordine alfabetico e sono valori presenti solamente per quel comando  
+8- per il comando **get_all** non vi è un valore possibile da aggiungere essendo che restituisce tutte le righe, per comando **get_row** il valore si inserisce tramite testo
