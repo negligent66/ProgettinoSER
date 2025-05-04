@@ -15,7 +15,8 @@ completato il passaggio generale si può continuare seguendo le istruzioni su co
 1- aprire il file del del client seguendo il percorso: ProgettinoSER/Progettino/Client/Clientino.java  
 2- clicacre sul run del compilatore per avviare il client **(N.B. il server deve essere avviato!!)**  
 3- l'utente dovrà scrivete i comandi da inviare al server sulla console del compilatore  
-4- questi sono i comandi disponibili all'utente  
+4- ci sarà prima di tutto il bisogno di inserire l'indirizzo IP e la porta al quale ci si deve connettere, se si lascia vuoto essa metterà di default 127.0.0.1:1050  
+4- questi sono i comandi disponibili all'utente:  
 **get_all** — restituisce tutte le righe del file  
 **get_row <numero>** — restituisce la riga specificata  
 **comune <nome>** — filtra per comune  
