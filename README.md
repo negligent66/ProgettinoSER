@@ -14,7 +14,20 @@ L'utilizzo di questo programma cambia da in base a quale client si desidera util
 completato il passaggio generale si può continuare seguendo le istruzioni su come usere il client simil terminale:  
 1- aprire il file del del client seguendo il percorso: ProgettinoSER/Progettino/Client/Clientino.java  
 2- clicacre sul run del compilatore per avviare il client **(N.B. il server deve essere avviato!!)**  
-3- l'utente si troverà dava  
+3- l'utente dovrà scrivete i comandi da inviare al server sulla console del compilatore  
+4- get_all — restituisce tutte le righe del file  
+   get_row <numero> — restituisce la riga specificata  
+   comune <nome> — filtra per comune  
+   provincia <nome> — filtra per provincia  
+   regione <nome> — filtra per regione  
+   nome <nome> — filtra per nome antenna  
+   anno <anno> — filtra per anno  
+   identificatore <id> — filtra per identificatore  
+   longitudine <valore> — filtra per longitudine  
+   latitudine <valore> — filtra per latitudine  
+   sort_by <campo> — ordina per il campo scelto  
+   help — mostra l’elenco dei comandi  
+   END — termina la connessione  
 
 ## CLIENT GUI (GRAPHICAL USER INTERFACE)
 
