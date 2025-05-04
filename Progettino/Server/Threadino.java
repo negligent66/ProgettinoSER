@@ -22,7 +22,7 @@ public class Threadino implements Runnable {
             out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream())), true);
 
             out.println("Scrivi il comando nel seguente modo (keyWord valore) (END per uscire e help per vedere quali comandi puoi usare):");
-            out.println("END_OF_MESSAGE"); // primo messaggio
+            out.println("END_OF_MESSAGE");
 
             while (true) {
                 String str = in.readLine();
