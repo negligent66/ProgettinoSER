@@ -79,6 +79,7 @@ public class ClientinoGUI extends JFrame {
 
     private void connettiServer(ActionEvent e) {
         try {
+            areaRisposta.setText("");
             String ip = ipCampo.getText().trim();
             int port = Integer.parseInt(portCampo.getText().trim());
             socket = new Socket(ip, port);
@@ -102,7 +103,6 @@ public class ClientinoGUI extends JFrame {
             String line;
             while ((line = in.readLine()) != null) {
                 if (line.equals("END_OF_MESSAGE")) break;
-                areaRisposta.append(line + "\n");
             }
         } catch (IOException e) {
             areaRisposta.append("Errore: " + e.getMessage() + "\n");
