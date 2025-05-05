@@ -12,7 +12,7 @@ L'utilizzo di questo programma cambia in base a quale client si desidera utilizz
 ## CLIENT TESTUALE
 
 Completato il passaggio generale si può continuare seguendo le istruzioni su come usere il client simil terminale:  
-1- Aprire il file del del client seguendo il percorso: ProgettinoSER/Progettino/Client/Clientino.java.  
+1- Aprire il file del client seguendo il percorso: ProgettinoSER/Progettino/Client/Clientino.java.  
 2- Eseguire il client **(N.B. il server deve essere avviato!!)**.  
 3- L'utente dovrà scrivete i comandi da inviare al server sulla console del compilatore.  
 4- Ci sarà prima di tutto il bisogno di inserire l'indirizzo IP e la porta al quale ci si deve connettere, se si lasciano i 2 campi vuoti essa metterà di default 127.0.0.1:1050.  
@@ -21,7 +21,7 @@ Completato il passaggio generale si può continuare seguendo le istruzioni su co
 ## CLIENT GUI (GRAPHICAL USER INTERFACE)
 
 completato il passaggio generale si può continuare seguendo le istruzioni su come usere il client GUI:  
-1- Aprire il file del del client seguendo il percorso: ProgettinoSER/Progettino/Client/ClientinoGUI.java.  
+1- Aprire il file del client seguendo il percorso: ProgettinoSER/Progettino/Client/ClientinoGUI.java.  
 2- Eseguire il client **(N.B. il server deve essere avviato!!)**.  
 3- Sia aprirà una finestra con una serie di bottoni iniziali.  
 4- Prima del bottone **CONNETTI** ci sono 2 caselle di testo, il primo per l'IP e il secondo per la porta, di default sono impostati a 127.0.0.1 e 1050.  
