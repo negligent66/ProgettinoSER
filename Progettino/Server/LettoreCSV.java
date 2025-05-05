@@ -15,7 +15,7 @@ public class LettoreCSV {
     
 
     public void letturaFile(){
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\cheni\\Desktop\\programmi\\ProgettinoSER\\Progettino\\Server\\Mappa-delle-antenne-in-Italia.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("Progettino/Server/Mappa-delle-antenne-in-Italia.csv"))) {
             String line = br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(";");
