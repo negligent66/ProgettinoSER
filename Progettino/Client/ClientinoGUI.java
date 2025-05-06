@@ -162,7 +162,7 @@ public class ClientinoGUI extends JFrame {
             valoreBox.setVisible(false);
             valoreCampo.setVisible(true);
         } else if (comando.equals("help")) {
-            valoreBox.setVisible(false);
+            valoreBox.setEnabled(false);
             valoreCampo.setVisible(false);
         } else {
             valoreBox.setEnabled(true);
