@@ -16,7 +16,7 @@ Completato il passaggio generale si può continuare seguendo le istruzioni su co
 2- Eseguire il client **(N.B. il server deve essere avviato!!)**.  
 3- L'utente dovrà scrivete i comandi da inviare al server sulla console del compilatore.  
 4- Ci sarà prima di tutto il bisogno di inserire l'indirizzo IP e la porta al quale ci si deve connettere, se si lasciano i 2 campi vuoti essa metterà di default 127.0.0.1:1050.  
-5- Dopodichè l'utente potra utilizzare il programma inserendo i comandi testuali.
+5- Dopodichè l'utente potra utilizzare il programma inserendo i comandi testuali (si trovano nella parte del protocollo di comunicazione).
 
 ## CLIENT GUI (GRAPHICAL USER INTERFACE)
 
@@ -57,6 +57,10 @@ L'applicazione è composta da tre componenti principali:
 - L'elaborazione dei dati del file CSV è contenuta nel server
 
 ### Protocollo di comunicazione
+
+Il protocollo di comunicazione è costituito da una prima parola, la chiave, e da una seconda, il valore. La parola chiave rappresenta ciò che si vuole fare, mentre il valore rappresenta, in base a che chiave si usa, ciò su cui lavora il server in base alla chiave scritta. ci sono parole chiavi che non hanno bisogno di un valore.  
+
+elenco di parole chiavi utilizzabili:  
 
 **get_all**                     — restituisce tutte le righe del file  
 **get_row `<numero>`**           — restituisce la riga specificata  
