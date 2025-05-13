@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ProgettinoSER:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ProgettinoSER_jar</output-path>
+    <root id="archive" name="ProgettinoSER.jar">
+      <element id="module-output" name="ProgettinoSER" />
+    </root>
+  </artifact>
+</component>
