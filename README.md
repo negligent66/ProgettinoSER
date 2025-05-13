@@ -4,7 +4,7 @@ L'utilizzo di questo programma cambia in base a quale client si desidera utilizz
 
 ## ISTRUZIONI GENERALI (necessario per l'utilizzo di entrambi i client)
 
-1- Scaricare la repository con il comando "git clone <URL_repo>" sul terminale.  
+1- Scaricare la repository con il comando `git clone https://github.com/negligent66/ProgettinoSER.git` sul terminale.  
 2- Aprire il progetto con un IDE.  
 3- Aprire il file del server seguendo il percorso: ProgettinoSER/Progettino/Server/Serverino.java.  
 4- Eseguire il server.  
